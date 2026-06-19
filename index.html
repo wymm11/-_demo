@@ -199,6 +199,38 @@
   .rank-strip .rs-bar{width:60px;height:6px;border-radius:3px;background:rgba(217,119,6,.2);overflow:hidden}
   .rank-strip .rs-bar i{display:block;height:100%;width:72%;background:linear-gradient(90deg,var(--amber-400),var(--amber-600));border-radius:3px}
 
+  /* 碳预算预警卡片 */
+  .budget-alert{margin:0 20px 18px;padding:16px;border-radius:var(--r-md);background:var(--white);box-shadow:var(--shadow-card);border:1px solid var(--line);animation:cardFadeIn .5s var(--ease-out) both}
+  .ba-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .ba-head .ba-title{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;color:var(--ink)}
+  .ba-head .ba-ai{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--green-400),var(--green-600));display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;box-shadow:0 3px 8px rgba(29,185,122,.3)}
+  .ba-head .ba-pct{font-family:"Sora",sans-serif;font-size:13px;font-weight:700;color:var(--amber-600)}
+  .ba-bar{height:10px;border-radius:6px;background:var(--gray-100);overflow:hidden;margin-bottom:8px}
+  .ba-bar i{display:block;height:100%;width:64%;border-radius:6px;background:linear-gradient(90deg,var(--amber-400),var(--amber-500));transition:width .6s var(--ease-out)}
+  .ba-bar i.lv-green{background:linear-gradient(90deg,var(--green-400),var(--green-600))}
+  .ba-bar i.lv-yellow{background:linear-gradient(90deg,var(--amber-400),var(--amber-500))}
+  .ba-bar i.lv-red{background:linear-gradient(90deg,#FB7185,var(--rose-500))}
+  .ba-label{font-size:12px;color:var(--gray-500);margin-bottom:12px}
+  .ba-pred{display:flex;align-items:flex-start;gap:8px;padding:10px 12px;border-radius:var(--r-sm);background:var(--green-50);font-size:12px;color:var(--green-800);line-height:1.55;margin-bottom:12px;border:1px solid var(--green-100)}
+  .ba-pred .ba-pred-ico{flex-shrink:0;font-size:14px;line-height:1.55}
+  .ba-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:11px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--green-600),var(--green-700));color:#fff;font-size:13px;font-weight:600;cursor:pointer;transition:transform .15s, box-shadow .2s;box-shadow:0 4px 12px rgba(22,163,74,.25)}
+  .ba-btn:active{transform:scale(.97)}
+  .ba-btn svg{width:14px;height:14px}
+
+  /* 碳排对比分析 */
+  .cmp-list{display:flex;flex-direction:column;gap:14px;margin-bottom:14px}
+  .cmp-row{display:flex;flex-direction:column;gap:6px}
+  .cmp-row .cmp-top{display:flex;justify-content:space-between;align-items:center;font-size:12px}
+  .cmp-row .cmp-name{color:var(--gray-700);font-weight:600}
+  .cmp-row .cmp-val{font-family:"Sora",sans-serif;font-weight:700;font-size:13px}
+  .cmp-row .cmp-val.me{color:var(--green-600)}
+  .cmp-row .cmp-val.gray{color:var(--gray-500)}
+  .cmp-track{height:12px;border-radius:6px;background:var(--gray-100);overflow:hidden}
+  .cmp-track i{display:block;height:100%;border-radius:6px;transition:width .8s var(--ease-out)}
+  .cmp-track i.me{background:linear-gradient(90deg,var(--green-400),var(--green-600))}
+  .cmp-track i.gray{background:linear-gradient(90deg,var(--gray-300),var(--gray-400))}
+  .cmp-conc{padding:12px;border-radius:var(--r-sm);background:var(--green-50);font-size:12px;color:var(--green-800);line-height:1.6;text-align:center;border:1px solid var(--green-100)}
+
   .flow-list{display:flex;flex-direction:column;gap:9px}
   .flow-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--white);border-radius:var(--r-sm);border:1px solid var(--line)}
   .flow-item .fi-ico{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
@@ -719,6 +751,69 @@
   .mini-trend .bar.active{opacity:1;transform:scaleY(1.08);transform-origin:bottom}
   .mini-trend .bar .bar-tip{position:absolute;top:-26px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:10px;font-weight:600;padding:2px 8px;border-radius:6px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;font-family:"Sora",sans-serif}
   .mini-trend .bar.active .bar-tip{opacity:1}
+
+  /* ============ SPLASH SCREEN (Enhanced) ============ */
+  .splash{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 30%, rgba(52,211,153,.15) 0%, transparent 60%),
+      linear-gradient(160deg,#062418 0%,#0B3D2E 50%,#0E4D3A 100%);
+    color:#fff;overflow:hidden;transition:opacity .6s ease,visibility .6s}
+  .splash.hide{opacity:0;visibility:hidden;pointer-events:none}
+  .splash::before{content:"";position:absolute;width:600px;height:600px;border-radius:50%;
+    background:radial-gradient(circle,rgba(29,185,122,.12),transparent 70%);
+    animation:splashGlow 3s ease-in-out infinite}
+  @keyframes splashGlow{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.2);opacity:.8}}
+  /* 世界地图背景 */
+  .splash-map{position:absolute;inset:0;opacity:.04;animation:splashMapRotate 60s linear infinite;display:flex;align-items:center;justify-content:center}
+  @keyframes splashMapRotate{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  /* 地球logo容器 */
+  .splash-logo-wrap{position:relative;width:120px;height:120px;display:flex;align-items:center;justify-content:center;animation:splashLogoIn 1s var(--spring) both}
+  @keyframes splashLogoIn{0%{opacity:0;transform:scale(0) rotate(-180deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+  .splash-logo{font-size:64px;filter:drop-shadow(0 4px 20px rgba(52,211,153,.4));z-index:3;animation:earthBreathe 3s ease-in-out infinite}
+  @keyframes earthBreathe{0%,100%{filter:drop-shadow(0 4px 20px rgba(52,211,153,.4))}50%{filter:drop-shadow(0 4px 30px rgba(52,211,153,.7))}}
+  /* 轨道环 */
+  .splash-orbit{position:absolute;width:110px;height:110px;border:1.5px dashed rgba(52,211,153,.3);border-radius:50%;animation:orbitSpin 8s linear infinite}
+  .splash-orbit::before{content:"🍃";position:absolute;top:-10px;left:50%;transform:translateX(-50%);font-size:16px;animation:orbitLeaf 8s linear infinite}
+  @keyframes orbitSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  @keyframes orbitLeaf{from{transform:translateX(-50%) rotate(0)}to{transform:translateX(-50%) rotate(-360deg)}}
+  /* 脉冲光圈 */
+  .splash-pulse{position:absolute;width:80px;height:80px;border-radius:50%;border:2px solid rgba(52,211,153,.4);animation:splashPulse 2s ease-out infinite}
+  .splash-pulse:nth-child(2){animation-delay:1s}
+  @keyframes splashPulse{0%{transform:scale(.8);opacity:.6}100%{transform:scale(2);opacity:0}}
+  /* 辐射光线 */
+  .splash-ray{position:absolute;width:2px;height:30px;background:linear-gradient(to top,rgba(52,211,153,.5),transparent);top:50%;left:50%;transform-origin:bottom center;animation:rayPulse 2s ease-in-out infinite}
+  @keyframes rayPulse{0%,100%{opacity:.2}50%{opacity:.6}}
+  /* 标题逐字动画 */
+  .splash-title{font-family:"Sora",sans-serif;font-size:32px;font-weight:800;letter-spacing:2px;margin-top:20px;display:flex;gap:0}
+  .splash-title span{display:inline-block;opacity:0;animation:titleCharIn .5s var(--spring) both}
+  .splash-title span:nth-child(1){animation-delay:.3s}
+  .splash-title span:nth-child(2){animation-delay:.4s}
+  .splash-title span:nth-child(3){animation-delay:.5s}
+  .splash-title span:nth-child(4){animation-delay:.6s}
+  @keyframes titleCharIn{from{opacity:0;transform:translateY(20px) scale(.5)}to{opacity:1;transform:none}}
+  .splash-sub{font-size:14px;color:rgba(255,255,255,.6);margin-top:8px;letter-spacing:1px;animation:splashFadeUp .8s .7s ease both}
+  .splash-line{width:0;height:2px;background:linear-gradient(90deg,transparent,var(--green-400),transparent);margin:24px 0;animation:splashLine 1s .9s ease forwards}
+  @keyframes splashLine{to{width:200px}}
+  /* 文案轮播 */
+  .splash-slogan{font-size:13px;color:rgba(255,255,255,.5);text-align:center;line-height:1.8;max-width:280px;height:40px;overflow:hidden;position:relative}
+  .splash-slogan div{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .6s}
+  .splash-slogan div.active{opacity:1}
+  /* 树苗加载动画 */
+  .splash-loader{margin-top:32px;display:flex;flex-direction:column;align-items:center;gap:8px;animation:splashFadeUp .8s 1.3s ease both}
+  .splash-seed{font-size:24px;animation:seedGrow 1.8s ease-in-out infinite}
+  @keyframes seedGrow{0%{transform:scale(.6) translateY(5px);opacity:.5}30%{transform:scale(1.2) translateY(-2px);opacity:1}60%{transform:scale(1) translateY(0);opacity:.8}100%{transform:scale(.6) translateY(5px);opacity:.5}}
+  .splash-loader-txt{font-size:10px;color:rgba(255,255,255,.3);letter-spacing:1px}
+  @keyframes splashFadeUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+  /* 飘浮植物元素 */
+  .splash-leaf{position:absolute;pointer-events:none;animation:splashLeaf 4s linear infinite}
+  @keyframes splashLeaf{0%{transform:translateY(0) rotate(0)}50%{transform:translateY(-20px) rotate(15deg)}100%{transform:translateY(0) rotate(0)}}
+  /* 上升飘浮 */
+  .splash-float{position:absolute;pointer-events:none;animation:splashFloat 6s linear infinite}
+  @keyframes splashFloat{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:var(--leaf-op,.2)}90%{opacity:var(--leaf-op,.2)}100%{transform:translateY(-300px) rotate(20deg);opacity:0}}
+  /* 粒子 */
+  .splash-particle{position:absolute;width:4px;height:4px;border-radius:50%;background:rgba(52,211,153,.6);pointer-events:none;animation:particleRise 4s linear infinite}
+  @keyframes particleRise{0%{transform:translateY(0) scale(1);opacity:0}20%{opacity:.8}100%{transform:translateY(-200px) scale(0);opacity:0}}
+
   @media(max-width:440px){
     body{padding:0;align-items:stretch}
     .desk-hint{display:none}
@@ -731,6 +826,55 @@
 </style>
 </head>
 <body>
+
+<!-- Splash Screen (Enhanced) -->
+<div class="splash" id="splash">
+  <!-- 世界地图背景 -->
+  <div class="splash-map"><svg width="400" height="400" viewBox="0 0 200 200" fill="none" stroke="#fff" stroke-width=".5"><circle cx="100" cy="100" r="90"/><path d="M30 80 Q50 60 70 75 T110 70 T150 80"/><path d="M40 110 Q60 95 80 105 T120 100 T160 110"/><path d="M50 140 Q70 125 90 135 T130 130 T170 140"/><ellipse cx="100" cy="100" rx="90" ry="40"/></svg></div>
+  <!-- 飘浮植物（前景层） -->
+  <div class="splash-leaf" style="top:12%;left:8%;font-size:22px;opacity:.25;animation-delay:0s">🌿</div>
+  <div class="splash-leaf" style="top:20%;right:10%;font-size:18px;opacity:.2;animation-delay:1s">🌱</div>
+  <div class="splash-leaf" style="bottom:18%;left:12%;font-size:26px;opacity:.25;animation-delay:2s">🍃</div>
+  <div class="splash-leaf" style="bottom:25%;right:8%;font-size:20px;opacity:.2;animation-delay:1.5s">🌳</div>
+  <!-- 上升飘浮（中景层） -->
+  <div class="splash-float" style="bottom:5%;left:15%;font-size:16px;--leaf-op:.15;animation-delay:0s;animation-duration:7s">🌲</div>
+  <div class="splash-float" style="bottom:5%;left:35%;font-size:14px;--leaf-op:.12;animation-delay:2s;animation-duration:8s">🌴</div>
+  <div class="splash-float" style="bottom:5%;right:30%;font-size:18px;--leaf-op:.15;animation-delay:1s;animation-duration:6s">🪴</div>
+  <div class="splash-float" style="bottom:5%;right:15%;font-size:14px;--leaf-op:.1;animation-delay:3s;animation-duration:9s">🌵</div>
+  <div class="splash-float" style="bottom:5%;left:50%;font-size:16px;--leaf-op:.13;animation-delay:1.5s;animation-duration:7.5s">🌾</div>
+  <div class="splash-float" style="bottom:5%;left:25%;font-size:15px;--leaf-op:.12;animation-delay:2.5s;animation-duration:8.5s">🍀</div>
+  <div class="splash-float" style="bottom:5%;right:40%;font-size:17px;--leaf-op:.14;animation-delay:.5s;animation-duration:6.5s">🍁</div>
+  <div class="splash-float" style="bottom:5%;right:20%;font-size:13px;--leaf-op:.1;animation-delay:3.5s;animation-duration:9.5s">🍂</div>
+  <!-- 粒子（由JS生成） -->
+  <div id="splashParticles"></div>
+  <!-- 地球logo -->
+  <div class="splash-logo-wrap">
+    <div class="splash-pulse"></div>
+    <div class="splash-pulse"></div>
+    <div class="splash-orbit"></div>
+    <div class="splash-ray" style="transform:translate(-50%,-50%) rotate(0deg)"></div>
+    <div class="splash-ray" style="transform:translate(-50%,-50%) rotate(45deg)"></div>
+    <div class="splash-ray" style="transform:translate(-50%,-50%) rotate(90deg)"></div>
+    <div class="splash-ray" style="transform:translate(-50%,-50%) rotate(135deg)"></div>
+    <div class="splash-ray" style="transform:translate(-50%,-50%) rotate(180deg)"></div>
+    <div class="splash-ray" style="transform:translate(-50%,-50%) rotate(225deg)"></div>
+    <div class="splash-ray" style="transform:translate(-50%,-50%) rotate(270deg)"></div>
+    <div class="splash-ray" style="transform:translate(-50%,-50%) rotate(315deg)"></div>
+    <div class="splash-logo">🌍</div>
+  </div>
+  <div class="splash-title"><span>绿</span><span>碳</span><span>账</span><span>本</span></div>
+  <div class="splash-sub">Green Carbon Ledger</div>
+  <div class="splash-line"></div>
+  <div class="splash-slogan" id="splashSlogan">
+    <div class="active">每一次消费都在改变地球</div>
+    <div>让 AI 帮你看见，每一克碳的重量</div>
+    <div>今天，你比昨天减碳了吗？</div>
+  </div>
+  <div class="splash-loader">
+    <div class="splash-seed">🌱</div>
+    <div class="splash-loader-txt">LOADING</div>
+  </div>
+</div>
 
 <div class="desk-hint">← 在手机上打开体验更佳 · 滑动可滚动页面 →</div>
 
@@ -794,6 +938,27 @@
           </div>
         </div>
 
+        <!-- 碳预算预警 -->
+        <div class="budget-alert">
+          <div class="ba-head">
+            <div class="ba-title">
+              <span class="ba-ai">🤖</span>
+              <span>本周碳预算预警</span>
+            </div>
+            <span class="ba-pct">已用 64%</span>
+          </div>
+          <div class="ba-bar"><i class="lv-yellow"></i></div>
+          <div class="ba-label">本周预算已用 64%，剩余 36%</div>
+          <div class="ba-pred">
+            <span class="ba-pred-ico">📈</span>
+            <span>按当前趋势，预计本周碳排放 <b>28.5kg</b>，将超出预算 <b>3.5kg</b></span>
+          </div>
+          <button class="ba-btn" onclick="go('page-coach')">
+            查看减碳建议
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+
         <!-- 同城排名条 -->
         <div class="rank-strip">
           <div class="rs-icon">🏅</div>
@@ -811,7 +976,7 @@
             <span class="more" onclick="go('page-all-flow');initAllFlow()">全部 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></span>
           </div>
           <div class="flow-list">
-            <div class="flow-item">
+            <div class="flow-item" onclick="openModal('travel')" style="cursor:pointer">
               <div class="fi-ico c1">🚗</div>
               <div class="fi-body"><div class="fi-name">打车通勤 · 10km</div><div class="fi-time">08:32 · 高德地图授权</div></div>
               <div class="fi-val up num">+1.7</div>
@@ -852,6 +1017,37 @@
               <div class="bar" style="height:42%" onclick="trendClick('周六',2.7,this)"><span class="d">六</span></div>
               <div class="bar today" style="height:38%" onclick="trendClick('今天',3.2,this)"><span class="d">今</span></div>
             </div>
+          </div>
+        </div>
+
+        <!-- 碳排对比分析 -->
+        <div class="sec">
+          <div class="sec-title"><h3>📊 碳排对比分析</h3></div>
+          <div class="card pad">
+            <div class="cmp-list">
+              <div class="cmp-row">
+                <div class="cmp-top">
+                  <span class="cmp-name">你的日均</span>
+                  <span class="cmp-val me">3.2 kg</span>
+                </div>
+                <div class="cmp-track"><i class="me" style="width:64%"></i></div>
+              </div>
+              <div class="cmp-row">
+                <div class="cmp-top">
+                  <span class="cmp-name">同龄人均值</span>
+                  <span class="cmp-val gray">4.1 kg</span>
+                </div>
+                <div class="cmp-track"><i class="gray" style="width:82%"></i></div>
+              </div>
+              <div class="cmp-row">
+                <div class="cmp-top">
+                  <span class="cmp-name">上周日均</span>
+                  <span class="cmp-val gray">3.8 kg</span>
+                </div>
+                <div class="cmp-track"><i class="gray" style="width:76%"></i></div>
+              </div>
+            </div>
+            <div class="cmp-conc">你的日均碳排放低于同龄人均值 <b>22%</b>，表现优秀！继续保持 🌿</div>
           </div>
         </div>
 
@@ -902,6 +1098,40 @@
           <div class="goal-num">4.8 <small>/ 7.5 kg</small></div>
           <div class="goal-progress"><i></i></div>
           <div class="goal-foot"><span>已完成 64%</span><span>剩余 2.7kg</span></div>
+        </div>
+
+        <!-- 个性化目标设置 -->
+        <div style="margin:0 20px 18px;padding:18px;border-radius:var(--r-lg);background:var(--white);border:1px solid var(--line);box-shadow:var(--shadow-card)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+            <div style="font-size:15px;font-weight:700;color:var(--ink)">🎯 我的减碳目标</div>
+            <span style="font-size:12px;color:var(--gray-500)">月度目标</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:var(--r-md);background:linear-gradient(100deg,var(--green-50),#fff);border:1px solid var(--green-200);margin-bottom:14px">
+            <span style="font-size:22px">🌍</span>
+            <div style="flex:1">
+              <div style="font-size:12px;color:var(--gray-500)">当前月度目标</div>
+              <div style="font-size:18px;font-weight:700;color:var(--green-700)" class="num" id="carbonGoalVal">10 <small style="font-size:12px;font-weight:500">kg/月</small></div>
+            </div>
+          </div>
+          <div style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:10px">快捷选择目标</div>
+          <div style="display:flex;gap:8px;margin-bottom:14px">
+            <div class="goal-opt" onclick="setCarbonGoal(this,5)" style="flex:1;padding:12px 8px;border-radius:14px;border:1.5px solid var(--line);background:var(--white);text-align:center;cursor:pointer;transition:all .18s">
+              <div style="font-size:11px;color:var(--gray-500)">轻松</div>
+              <div class="num" style="font-size:16px;font-weight:700;color:var(--ink);margin-top:2px">5kg</div>
+            </div>
+            <div class="goal-opt sel" onclick="setCarbonGoal(this,10)" style="flex:1;padding:12px 8px;border-radius:14px;border:1.5px solid var(--green-500);background:var(--green-50);text-align:center;cursor:pointer;transition:all .18s">
+              <div style="font-size:11px;color:var(--green-700)">标准</div>
+              <div class="num" style="font-size:16px;font-weight:700;color:var(--green-700);margin-top:2px">10kg</div>
+            </div>
+            <div class="goal-opt" onclick="setCarbonGoal(this,20)" style="flex:1;padding:12px 8px;border-radius:14px;border:1.5px solid var(--line);background:var(--white);text-align:center;cursor:pointer;transition:all .18s">
+              <div style="font-size:11px;color:var(--gray-500)">挑战</div>
+              <div class="num" style="font-size:16px;font-weight:700;color:var(--ink);margin-top:2px">20kg</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--gray-500);line-height:1.5">
+            <span>🤖</span>
+            <span>AI将根据你的目标动态调整每日任务推荐</span>
+          </div>
         </div>
 
         <div class="sec">
@@ -1119,6 +1349,61 @@
           </div>
         </div>
 
+        <!-- 成长里程碑 -->
+        <div class="sec">
+          <div class="sec-title"><h3>🌟 成长里程碑</h3><span class="more">3 个进行中</span></div>
+          <div style="margin:0 0 14px;padding:14px 16px;background:var(--white);border-radius:var(--r-md);border:1px solid var(--line);box-shadow:var(--shadow-card)">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+              <div style="display:flex;align-items:center;gap:8px">
+                <span style="font-size:18px">💯</span>
+                <span style="font-size:13px;font-weight:700;color:var(--ink)">累计减碳 100kg</span>
+              </div>
+              <span style="font-size:12px;font-weight:700;color:var(--green-600)" class="num">68.4/100</span>
+            </div>
+            <div style="height:8px;border-radius:100px;background:var(--green-100);overflow:hidden">
+              <div style="height:100%;width:68%;border-radius:100px;background:linear-gradient(90deg,var(--green-400),var(--green-600))"></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px;font-size:11px;color:var(--gray-500)">
+              <span>已完成 68%</span>
+              <span>🎁 达成解锁：减碳百kg 勋章 + 100积分</span>
+            </div>
+          </div>
+
+          <div style="margin:0 0 14px;padding:14px 16px;background:var(--white);border-radius:var(--r-md);border:1px solid var(--line);box-shadow:var(--shadow-card)">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+              <div style="display:flex;align-items:center;gap:8px">
+                <span style="font-size:18px">⭐</span>
+                <span style="font-size:13px;font-weight:700;color:var(--ink)">连续打卡 90 天</span>
+              </div>
+              <span style="font-size:12px;font-weight:700;color:var(--green-600)" class="num">86/90</span>
+            </div>
+            <div style="height:8px;border-radius:100px;background:var(--green-100);overflow:hidden">
+              <div style="height:100%;width:96%;border-radius:100px;background:linear-gradient(90deg,var(--green-400),var(--green-600))"></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px;font-size:11px;color:var(--gray-500)">
+              <span>已完成 96% · 还差 4 天</span>
+              <span>🎁 达成解锁：全勤达人勋章 + 专属头像框</span>
+            </div>
+          </div>
+
+          <div style="margin:0 0 4px;padding:14px 16px;background:var(--white);border-radius:var(--r-md);border:1px solid var(--line);box-shadow:var(--shadow-card)">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+              <div style="display:flex;align-items:center;gap:8px">
+                <span style="font-size:18px">💎</span>
+                <span style="font-size:13px;font-weight:700;color:var(--ink)">累计积分 500 分</span>
+              </div>
+              <span style="font-size:12px;font-weight:700;color:var(--green-600)" class="num">186/500</span>
+            </div>
+            <div style="height:8px;border-radius:100px;background:var(--green-100);overflow:hidden">
+              <div style="height:100%;width:37%;border-radius:100px;background:linear-gradient(90deg,var(--green-400),var(--green-600))"></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px;font-size:11px;color:var(--gray-500)">
+              <span>已完成 37%</span>
+              <span>🎁 达成解锁：积分贵族称号 + 商城优惠券</span>
+            </div>
+          </div>
+        </div>
+
         <!-- 功能菜单 -->
         <div class="sec">
           <div class="sec-title"><h3>⚙️ 功能中心</h3></div>
@@ -1127,6 +1412,24 @@
               <div class="mi-ico m1">📊</div>
               <div class="mi-t">我的碳报告</div>
               <div class="mi-v">6月报告</div>
+              <svg class="mi-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+            </div>
+            <div class="menu-item" onclick="go('page-calc')">
+              <div class="mi-ico m2">🧮</div>
+              <div class="mi-t">碳中和计算器</div>
+              <div class="mi-v">积分兑换中和</div>
+              <svg class="mi-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+            </div>
+            <div class="menu-item" onclick="go('page-family')">
+              <div class="mi-ico m4">👨‍👩‍👧‍👦</div>
+              <div class="mi-t">家庭碳账户</div>
+              <div class="mi-v">4位成员</div>
+              <svg class="mi-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+            </div>
+            <div class="menu-item" onclick="go('page-carbon-report')">
+              <div class="mi-ico m3">📄</div>
+              <div class="mi-t">月度碳报告</div>
+              <div class="mi-v">可分享导出</div>
               <svg class="mi-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
             </div>
             <div class="menu-item" onclick="go('page-collect')">
@@ -1349,8 +1652,8 @@
         </div>
       </section>
 
-      <!-- ========== SUB: 碳计算器 ========== -->
-      <section class="page sub" id="page-calc">
+      <!-- ========== SUB: 碳足迹计算器 ========== -->
+      <section class="page sub" id="page-calc-footprint">
         <div class="sub-header">
           <div class="sub-back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></div>
           <div class="sub-title">碳足迹计算器</div>
@@ -1708,6 +2011,264 @@
         </div>
       </section>
 
+      <!-- ========== SUB: 评论页 ========== -->
+      <section class="page sub" id="page-comment">
+        <div class="sub-header">
+          <div class="sub-back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></div>
+          <div class="sub-title" style="margin-right:0">评论</div>
+        </div>
+        <div id="commentList" style="padding:16px 20px 80px"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--line);padding:10px 16px calc(var(--safe-bottom) + 10px);display:flex;gap:10px;z-index:5">
+          <input id="commentInput" type="text" placeholder="写下你的评论..." style="flex:1;padding:10px 16px;border-radius:100px;border:1px solid var(--line);background:var(--gray-100);font-size:14px;outline:none">
+          <button onclick="sendComment()" style="padding:10px 18px;border-radius:100px;border:none;background:linear-gradient(135deg,var(--green-500),var(--green-700));color:#fff;font-size:14px;font-weight:600;cursor:pointer">发送</button>
+        </div>
+      </section>
+
+      <!-- ========== SUB: 碳中和计算器 ========== -->
+      <section class="page sub" id="page-calc">
+        <div class="sub-header">
+          <div class="sub-back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></div>
+          <div class="sub-title">碳中和计算器</div>
+        </div>
+        <div style="padding:16px 20px">
+          <!-- 输入区 -->
+          <div class="card pad" style="margin-bottom:16px;background:linear-gradient(120deg,var(--green-50),#fff)">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+              <span style="font-size:20px">🌱</span>
+              <span style="font-size:14px;font-weight:700;color:var(--green-700)">输入想中和的碳排放量</span>
+            </div>
+            <div style="display:flex;gap:10px;align-items:center">
+              <input id="neutralInput" type="number" min="0" step="0.1" placeholder="如：10.5" style="flex:1;padding:13px 16px;border-radius:12px;border:1.5px solid var(--green-200);background:#fff;font-size:18px;font-weight:700;outline:none;font-family:'Sora',sans-serif;color:var(--ink)">
+              <span style="font-size:13px;color:var(--gray-500);font-weight:600">kg CO₂</span>
+            </div>
+            <button onclick="calcNeutral()" style="width:100%;margin-top:12px;padding:13px;border-radius:14px;border:none;background:linear-gradient(135deg,var(--green-600),var(--green-700));color:#fff;font-size:15px;font-weight:600;cursor:pointer;box-shadow:var(--shadow-fab)">🧮 计算碳中和方案</button>
+          </div>
+
+          <!-- 结果展示区 -->
+          <div id="neutralResult" style="display:none">
+            <div class="calc-res" style="text-align:left;margin-bottom:16px">
+              <div class="cr-lbl">本次需中和</div>
+              <div style="display:flex;align-items:baseline;gap:6px"><span class="cr-num num" id="nrCarbon" style="font-size:44px">0</span><span class="cr-unit">kg CO₂</span></div>
+            </div>
+
+            <div class="sec" style="padding:0;margin-bottom:16px">
+              <div class="sec-title"><h3>🍃 等价中和方案</h3></div>
+              <div class="card pad" style="margin-bottom:10px;display:flex;align-items:center;gap:14px">
+                <div style="width:46px;height:46px;border-radius:14px;background:var(--green-100);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">🌳</div>
+                <div style="flex:1;min-width:0"><div style="font-size:12px;color:var(--gray-500)">需要树木吸收1年</div><div style="font-size:17px;font-weight:700;color:var(--ink)" class="num"><span id="nrTrees">0</span> 棵树</div></div>
+                <div style="font-size:11px;color:var(--gray-400);text-align:right;max-width:84px;line-height:1.4">每棵树年吸收约20kg</div>
+              </div>
+              <div class="card pad" style="margin-bottom:10px;display:flex;align-items:center;gap:14px">
+                <div style="width:46px;height:46px;border-radius:14px;background:#FEF3C7;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">🚗</div>
+                <div style="flex:1;min-width:0"><div style="font-size:12px;color:var(--gray-500)">等价于少开</div><div style="font-size:17px;font-weight:700;color:var(--ink)" class="num"><span id="nrKm">0</span> 公里</div></div>
+                <div style="font-size:11px;color:var(--gray-400);text-align:right;max-width:84px;line-height:1.4">每公里约0.17kg</div>
+              </div>
+              <div class="card pad" style="margin-bottom:10px;display:flex;align-items:center;gap:14px">
+                <div style="width:46px;height:46px;border-radius:14px;background:#E0F2FE;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">⚡</div>
+                <div style="flex:1;min-width:0"><div style="font-size:12px;color:var(--gray-500)">等价于少用</div><div style="font-size:17px;font-weight:700;color:var(--ink)" class="num"><span id="nrElec">0</span> 度电</div></div>
+                <div style="font-size:11px;color:var(--gray-400);text-align:right;max-width:84px;line-height:1.4">每度约0.785kg</div>
+              </div>
+              <div class="card pad" style="display:flex;align-items:center;gap:14px;background:linear-gradient(100deg,var(--green-50),#fff);border-color:var(--green-200)">
+                <div style="width:46px;height:46px;border-radius:14px;background:var(--green-100);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">💚</div>
+                <div style="flex:1;min-width:0"><div style="font-size:12px;color:var(--gray-500)">需要碳积分兑换</div><div style="font-size:17px;font-weight:700;color:var(--green-700)" class="num"><span id="nrPoints">0</span> 积分</div></div>
+                <div style="font-size:11px;color:var(--gray-400);text-align:right;max-width:84px;line-height:1.4">1积分=0.1kg碳中和</div>
+              </div>
+            </div>
+
+            <button id="neutralRedeemBtn" onclick="redeemNeutral()" style="width:100%;padding:15px;border-radius:14px;border:none;background:linear-gradient(135deg,var(--green-500),var(--green-700));color:#fff;font-size:15px;font-weight:700;cursor:pointer;box-shadow:var(--shadow-fab)">用 <span id="nrBtnPoints">0</span> 积分兑换碳中和</button>
+          </div>
+          <div style="height:20px"></div>
+        </div>
+      </section>
+
+      <!-- ========== SUB: 家庭碳账户 ========== -->
+      <section class="page sub" id="page-family">
+        <div class="sub-header">
+          <div class="sub-back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></div>
+          <div class="sub-title" style="margin-right:0">家庭碳账户</div>
+          <div class="icon-btn" onclick="toast('邀请链接已复制，快邀请家人加入','👨‍👩‍👧‍👦')" style="position:absolute;right:16px;top:8px;width:34px;height:34px">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+          </div>
+        </div>
+        <div style="padding:16px 0">
+          <!-- 家庭汇总卡 -->
+          <div class="goal-card" style="margin:0 20px 18px">
+            <div class="goal-top">
+              <div class="gt-lbl">本周家庭碳排放</div>
+              <div class="gt-val">4位成员</div>
+            </div>
+            <div class="goal-num">18.6 <small>/ 25 kg 目标</small></div>
+            <div style="height:8px;border-radius:4px;background:rgba(255,255,255,.2);margin-top:8px;overflow:hidden"><div style="height:100%;width:74.4%;border-radius:4px;background:linear-gradient(90deg,var(--green-300),var(--green-400))"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:10px;font-size:12px;color:rgba(255,255,255,.85)">
+              <span>距目标还差 6.4kg</span>
+              <span>已减碳 8.2kg 🎉</span>
+            </div>
+          </div>
+
+          <!-- 家庭成员列表 -->
+          <div class="sec">
+            <div class="sec-title"><h3>👨‍👩‍👧‍👦 家庭成员</h3></div>
+            <div class="card" style="overflow:hidden">
+              <div class="flow-item" style="border:none;border-bottom:1px solid var(--line)">
+                <div class="avatar">🧑</div>
+                <div class="fi-body"><div class="fi-name">我（减碳达人）</div><div class="fi-time">本周碳排放 4.2kg</div></div>
+                <div class="fi-val down">-3.1kg</div>
+              </div>
+              <div class="flow-item" style="border:none;border-bottom:1px solid var(--line)">
+                <div class="avatar" style="background:linear-gradient(135deg,#60A5FA,#0369A1)">👨</div>
+                <div class="fi-body"><div class="fi-name">爸爸</div><div class="fi-time">本周碳排放 6.8kg</div></div>
+                <div class="fi-val down">-1.5kg</div>
+              </div>
+              <div class="flow-item" style="border:none;border-bottom:1px solid var(--line)">
+                <div class="avatar" style="background:linear-gradient(135deg,#F472B6,#BE185D)">👩</div>
+                <div class="fi-body"><div class="fi-name">妈妈</div><div class="fi-time">本周碳排放 4.5kg</div></div>
+                <div class="fi-val down">-2.4kg</div>
+              </div>
+              <div class="flow-item" style="border:none">
+                <div class="avatar" style="background:linear-gradient(135deg,var(--amber-400),var(--amber-600))">👦</div>
+                <div class="fi-body"><div class="fi-name">小宝</div><div class="fi-time">本周碳排放 3.1kg</div></div>
+                <div class="fi-val down">-1.2kg</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 家庭任务区 -->
+          <div class="sec">
+            <div class="sec-title"><h3>🎯 家庭任务</h3><span class="more">需全员打卡</span></div>
+            <div class="card pad" style="margin-bottom:10px">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+                <div style="width:38px;height:38px;border-radius:11px;background:var(--green-100);display:flex;align-items:center;justify-content:center;font-size:18px">🚶</div>
+                <div style="flex:1"><div style="font-size:14px;font-weight:600;color:var(--ink)">全家步行出门1次</div><div style="font-size:11px;color:var(--gray-500);margin-top:2px">奖励 30 积分 · 需全员打卡</div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="flex:1;height:8px;border-radius:4px;background:var(--gray-100);overflow:hidden"><div id="famTask1Bar" style="height:100%;width:50%;border-radius:4px;background:linear-gradient(90deg,var(--green-400),var(--green-600));transition:width .3s"></div></div>
+                <span style="font-size:12px;font-weight:600;color:var(--gray-500)" class="num"><span id="famTask1Done">2</span>/4</span>
+                <button id="famTask1Btn" onclick="famCheckin(1)" style="padding:7px 14px;border-radius:100px;border:none;background:var(--green-600);color:#fff;font-size:12px;font-weight:600;cursor:pointer">打卡</button>
+              </div>
+            </div>
+            <div class="card pad">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+                <div style="width:38px;height:38px;border-radius:11px;background:#FEF3C7;display:flex;align-items:center;justify-content:center;font-size:18px">🥗</div>
+                <div style="flex:1"><div style="font-size:14px;font-weight:600;color:var(--ink)">一起做一顿素食晚餐</div><div style="font-size:11px;color:var(--gray-500);margin-top:2px">奖励 20 积分 · 需全员打卡</div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="flex:1;height:8px;border-radius:4px;background:var(--gray-100);overflow:hidden"><div id="famTask2Bar" style="height:100%;width:75%;border-radius:4px;background:linear-gradient(90deg,var(--green-400),var(--green-600));transition:width .3s"></div></div>
+                <span style="font-size:12px;font-weight:600;color:var(--gray-500)" class="num"><span id="famTask2Done">3</span>/4</span>
+                <button id="famTask2Btn" onclick="famCheckin(2)" style="padding:7px 14px;border-radius:100px;border:none;background:var(--green-600);color:#fff;font-size:12px;font-weight:600;cursor:pointer">打卡</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 家庭排名 -->
+          <div class="sec">
+            <div class="sec-title"><h3>🏆 小区家庭排名</h3></div>
+            <div class="card pad" style="display:flex;align-items:center;gap:14px;background:linear-gradient(100deg,var(--amber-100),#fff);border-color:#FDE9C0">
+              <div style="width:54px;height:54px;border-radius:16px;background:linear-gradient(135deg,var(--amber-400),var(--amber-600));display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;font-weight:800;font-family:'Sora',sans-serif;flex-shrink:0">3</div>
+              <div style="flex:1;min-width:0">
+                <div style="font-size:15px;font-weight:700;color:var(--ink)">我家 · 第 3 名</div>
+                <div style="font-size:12px;color:var(--gray-500);margin-top:2px">本周减碳 8.2kg，超越小区 78% 家庭</div>
+              </div>
+              <div style="text-align:right">
+                <div style="font-size:11px;color:var(--gray-500)">较上周</div>
+                <div style="font-size:14px;font-weight:700;color:var(--green-600)">↑ 2名</div>
+              </div>
+            </div>
+          </div>
+          <div style="height:20px"></div>
+        </div>
+      </section>
+
+      <!-- ========== SUB: 月度碳报告 ========== -->
+      <section class="page sub" id="page-carbon-report">
+        <div class="sub-header">
+          <div class="sub-back" onclick="back()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></div>
+          <div class="sub-title">月度碳报告</div>
+        </div>
+        <div style="padding:16px 20px">
+          <!-- 报告卡片 -->
+          <div class="card" style="overflow:hidden;border:none;box-shadow:var(--shadow-pop)">
+            <!-- 顶部 -->
+            <div style="padding:22px 20px;background:linear-gradient(150deg,var(--green-900),var(--green-700));color:#fff;position:relative;overflow:hidden">
+              <div style="position:absolute;right:-10px;top:-10px;font-size:80px;opacity:.1">📊</div>
+              <div style="font-size:12px;color:rgba(255,255,255,.7);font-weight:600;letter-spacing:.5px">GREEN CARBON REPORT</div>
+              <div style="font-size:24px;font-weight:800;margin-top:4px;font-family:'Sora',sans-serif">6月碳报告</div>
+              <div style="font-size:12px;color:rgba(255,255,255,.8);margin-top:6px">2026.06.01 — 2026.06.19</div>
+            </div>
+
+            <div style="padding:18px 20px">
+              <!-- 总碳排放 -->
+              <div style="display:flex;align-items:flex-end;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid var(--line)">
+                <div>
+                  <div style="font-size:12px;color:var(--gray-500)">本月总碳排放</div>
+                  <div style="font-size:32px;font-weight:800;color:var(--ink);font-family:'Sora',sans-serif;line-height:1.1">89.6 <span style="font-size:14px;font-weight:500;color:var(--gray-500)">kg</span></div>
+                </div>
+                <div style="text-align:right">
+                  <div style="display:inline-flex;align-items:center;gap:3px;padding:4px 10px;border-radius:100px;background:var(--green-100);color:var(--green-700);font-size:12px;font-weight:700">↓ 12%</div>
+                  <div style="font-size:11px;color:var(--gray-500);margin-top:4px">环比上月</div>
+                </div>
+              </div>
+
+              <!-- 减碳量 -->
+              <div style="display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)">
+                <div style="width:42px;height:42px;border-radius:12px;background:var(--green-100);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">🌱</div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:12px;color:var(--gray-500)">本月减碳量</div>
+                  <div style="font-size:16px;font-weight:700;color:var(--green-700)" class="num">12.2 kg</div>
+                </div>
+                <div style="font-size:12px;color:var(--gray-500);text-align:right;line-height:1.5">相当于种<br><b style="font-size:15px;color:var(--green-600)" class="num">0.6</b> 棵树</div>
+              </div>
+
+              <!-- 饼图 -->
+              <div style="padding:14px 0;border-bottom:1px solid var(--line)">
+                <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:12px">🥧 碳排放构成</div>
+                <div style="display:flex;align-items:center;gap:18px">
+                  <div style="position:relative;width:108px;height:108px;flex-shrink:0">
+                    <div style="width:100%;height:100%;border-radius:50%;background:conic-gradient(#1DB97A 0 45%,#FBBF24 45% 73%,#FB923C 73% 88%,#60A5FA 88% 100%)"></div>
+                    <div style="position:absolute;inset:18px;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center">
+                      <div style="font-size:18px;font-weight:800;color:var(--ink);font-family:'Sora',sans-serif">89.6</div>
+                      <div style="font-size:10px;color:var(--gray-500)">kg</div>
+                    </div>
+                  </div>
+                  <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+                    <div style="display:flex;align-items:center;gap:8px;font-size:12px"><span style="width:10px;height:10px;border-radius:3px;background:#1DB97A;flex-shrink:0"></span><span style="flex:1;color:var(--gray-700)">交通</span><span style="font-weight:700;color:var(--ink)" class="num">45%</span></div>
+                    <div style="display:flex;align-items:center;gap:8px;font-size:12px"><span style="width:10px;height:10px;border-radius:3px;background:#FBBF24;flex-shrink:0"></span><span style="flex:1;color:var(--gray-700)">饮食</span><span style="font-weight:700;color:var(--ink)" class="num">28%</span></div>
+                    <div style="display:flex;align-items:center;gap:8px;font-size:12px"><span style="width:10px;height:10px;border-radius:3px;background:#FB923C;flex-shrink:0"></span><span style="flex:1;color:var(--gray-700)">购物</span><span style="font-weight:700;color:var(--ink)" class="num">15%</span></div>
+                    <div style="display:flex;align-items:center;gap:8px;font-size:12px"><span style="width:10px;height:10px;border-radius:3px;background:#60A5FA;flex-shrink:0"></span><span style="flex:1;color:var(--gray-700)">能源</span><span style="font-weight:700;color:var(--ink)" class="num">12%</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 最大贡献行为 -->
+              <div style="padding:14px 0;border-bottom:1px solid var(--line)">
+                <div style="font-size:12px;color:var(--gray-500);margin-bottom:6px">🏅 最大减碳贡献</div>
+                <div style="display:flex;align-items:center;gap:10px;padding:12px;border-radius:12px;background:linear-gradient(100deg,var(--green-50),#fff);border:1px solid var(--green-200)">
+                  <div style="font-size:22px">🚇</div>
+                  <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600;color:var(--ink)">地铁通勤替代打车</div><div style="font-size:11px;color:var(--gray-500);margin-top:2px">本月累计 18 次</div></div>
+                  <div style="font-size:16px;font-weight:800;color:var(--green-600)" class="num">-7.0kg</div>
+                </div>
+              </div>
+
+              <!-- 排名变化 -->
+              <div style="display:flex;align-items:center;gap:12px;padding:14px 0 4px">
+                <div style="width:42px;height:42px;border-radius:12px;background:#FEF3C7;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">📈</div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:12px;color:var(--gray-500)">同城排名变化</div>
+                  <div style="font-size:16px;font-weight:700;color:var(--ink)">排名上升 <span style="color:var(--green-600)" class="num">15%</span></div>
+                </div>
+                <div style="font-size:24px">🚀</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 底部按钮 -->
+          <div style="display:flex;gap:10px;margin-top:16px">
+            <button onclick="openModal('share')" style="flex:1;padding:14px;border-radius:14px;border:1.5px solid var(--green-300);background:var(--white);color:var(--green-700);font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">📤 分享报告</button>
+            <button onclick="toast('报告已保存到相册','🖼️')" style="flex:1;padding:14px;border-radius:14px;border:none;background:linear-gradient(135deg,var(--green-600),var(--green-700));color:#fff;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;box-shadow:var(--shadow-fab)">💾 导出图片</button>
+          </div>
+          <div style="height:20px"></div>
+        </div>
+      </section>
+
     </div><!-- /pages -->
 
     <!-- ========== GLOBAL FAB ========== -->
@@ -1863,6 +2424,67 @@
           <div class="ss-item" onclick="toast('已复制链接','🔗')"><div class="ssi-ico" style="background:#FCE7F3">🔗</div><span class="ssi-t">复制链接</span></div>
         </div>
         <div style="text-align:center;margin-top:16px;font-size:12px;color:var(--gray-500);cursor:pointer" onclick="closeModal('share')">取消</div>
+      </div>
+    </div>
+
+    <!-- ========== TRAVEL NAV MODAL ========== -->
+    <div class="modal-mask" id="modal-travel">
+      <div class="modal-sheet">
+        <div class="sheet-handle"></div>
+        <div class="sheet-title">🚗 低碳出行建议</div>
+        <div class="sheet-sub">为你的通勤路线推荐更环保的出行方式</div>
+
+        <!-- 当前选择 -->
+        <div style="margin:0 0 16px;padding:14px 16px;border-radius:var(--r-md);background:linear-gradient(100deg,var(--green-50),#fff);border:1px solid var(--green-200);display:flex;align-items:center;gap:12px">
+          <div style="width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#FECACA,#F87171);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🚗</div>
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:700;color:var(--ink)">当前选择：打车 10km</div>
+            <div style="font-size:12px;color:var(--gray-500);margin-top:2px">碳排放 <b style="color:var(--rose-500)">1.7kg</b> CO₂</div>
+          </div>
+        </div>
+
+        <div style="font-size:13px;font-weight:600;color:var(--ink);margin:4px 0 10px">替代方案</div>
+
+        <!-- 地铁（推荐） -->
+        <div style="margin-bottom:10px;padding:14px;border-radius:var(--r-md);background:var(--white);border:1.5px solid var(--green-500);box-shadow:var(--shadow-card)">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,var(--green-100),var(--green-200));display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🚇</div>
+            <div style="flex:1">
+              <div style="display:flex;align-items:center;gap:6px">
+                <span style="font-size:14px;font-weight:700;color:var(--ink)">地铁</span>
+                <span style="font-size:10px;font-weight:700;color:#fff;background:var(--green-600);padding:2px 8px;border-radius:100px">推荐</span>
+              </div>
+              <div style="font-size:12px;color:var(--gray-500);margin-top:3px">碳排放 <b style="color:var(--green-700)">0.3kg</b> · 减碳 <b style="color:var(--green-600)">1.4kg</b></div>
+            </div>
+            <button onclick="planTravel('地铁')" style="padding:8px 16px;border-radius:100px;border:none;background:linear-gradient(135deg,var(--green-600),var(--green-700));color:#fff;font-size:12px;font-weight:600;cursor:pointer;box-shadow:var(--shadow-fab)">导航</button>
+          </div>
+        </div>
+
+        <!-- 公交 -->
+        <div style="margin-bottom:10px;padding:14px;border-radius:var(--r-md);background:var(--white);border:1px solid var(--line);box-shadow:var(--shadow-card)">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#FEF3C7,#FBBF24);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🚌</div>
+            <div style="flex:1">
+              <div style="font-size:14px;font-weight:700;color:var(--ink)">公交</div>
+              <div style="font-size:12px;color:var(--gray-500);margin-top:3px">碳排放 <b style="color:var(--green-700)">0.5kg</b> · 减碳 <b style="color:var(--green-600)">1.2kg</b></div>
+            </div>
+            <button onclick="planTravel('公交')" style="padding:8px 16px;border-radius:100px;border:1px solid var(--green-300);background:var(--green-50);color:var(--green-700);font-size:12px;font-weight:600;cursor:pointer">导航</button>
+          </div>
+        </div>
+
+        <!-- 骑行 -->
+        <div style="margin-bottom:18px;padding:14px;border-radius:var(--r-md);background:var(--white);border:1px solid var(--line);box-shadow:var(--shadow-card)">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#E0F2FE,#7DD3FC);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🚲</div>
+            <div style="flex:1">
+              <div style="font-size:14px;font-weight:700;color:var(--ink)">骑行</div>
+              <div style="font-size:12px;color:var(--gray-500);margin-top:3px">碳排放 <b style="color:var(--green-700)">0kg</b> · 减碳 <b style="color:var(--green-600)">1.7kg</b></div>
+            </div>
+            <button onclick="planTravel('骑行')" style="padding:8px 16px;border-radius:100px;border:1px solid var(--green-300);background:var(--green-50);color:var(--green-700);font-size:12px;font-weight:600;cursor:pointer">导航</button>
+          </div>
+        </div>
+
+        <button onclick="closeModal('travel')" style="width:100%;padding:14px;border-radius:14px;border:none;background:var(--white);border:1px solid var(--line);color:var(--gray-700);font-size:15px;font-weight:600;cursor:pointer">关闭</button>
       </div>
     </div>
 
@@ -2273,6 +2895,22 @@
     }
     nextStep();
   }
+  /* 低碳食物替代方案数据 */
+  const lowCarbonAltMap=[
+    {keys:['牛排','牛肉'],alt:'鸡胸肉',pct:72},
+    {keys:['汉堡'],alt:'鸡肉汉堡',pct:65},
+    {keys:['咖啡'],alt:'自带杯咖啡',pct:60},
+    {keys:['便当','猪排'],alt:'素食便当',pct:55},
+    {keys:['拉面'],alt:'自制汤面',pct:48},
+    {keys:['快递','包裹'],alt:'合并订单集中配送',pct:40},
+    {keys:['私家车','车'],alt:'地铁通勤',pct:82}
+  ];
+  function getLowCarbonAlt(name){
+    for(const r of lowCarbonAltMap){
+      if(r.keys.some(k=>name.includes(k)))return r;
+    }
+    return null;
+  }
   function showScanResult(){
     const items=albumSelected.map(id=>albumData.find(a=>a.id===id));
     const total=items.reduce((s,i)=>s+i.carbon,0);
@@ -2307,12 +2945,18 @@
           ${items.map(i=>`<div class="sr-photo" style="background:${i.bg}">${i.emoji}<div class="sr-pv">${i.carbon}kg</div></div>`).join('')}
         </div>
         <div class="sr-detail">
-          ${items.map(i=>`
+          ${items.map(i=>{
+            const alt=getLowCarbonAlt(i.name);
+            return `
             <div class="sr-row">
               <div class="sr-ico" style="background:${i.bg}">${i.emoji}</div>
               <div class="sr-info"><div class="sr-name">${i.name}</div><div class="sr-desc">${i.desc}</div></div>
               <div class="sr-val num" style="color:var(--rose-500)">+${i.carbon}</div>
-            </div>`).join('')}
+            </div>
+            ${alt?`<div style="margin:8px 0 10px 56px;padding:10px 12px;border-radius:10px;background:var(--green-50);border:1px solid var(--green-200);font-size:12px;color:var(--green-800);line-height:1.5">
+              💡 低碳推荐：换成<b style="color:var(--green-700)">${alt.alt}</b>可减碳<b style="color:var(--green-700)">${alt.pct}%</b>
+              <span style="display:inline-block;margin-left:4px;color:var(--green-700);font-weight:600;cursor:pointer" onclick="go('page-coach')">了解更多 ›</span>
+            </div>`:''}`}).join('')}
           <div class="sr-row" style="background:var(--green-50)">
             <div class="sr-ico" style="background:var(--green-100);color:var(--green-700)">📊</div>
             <div class="sr-info"><div class="sr-name">昨天同时段</div><div class="sr-desc">作为对比基准</div></div>
@@ -2325,12 +2969,45 @@
         </div>
         <div class="sr-act">
           <button class="sr-act1" onclick="go('page-album');initAlbum()">再测一次</button>
-          <button class="sr-act2" onclick="toast('已记录到今日碳账本','✅');go('page-ledger')">记入碳账本</button>
+          <button class="sr-act2" onclick="saveScanToLedger()">记入碳账本</button>
         </div>
         <div class="sr-act" style="margin-top:10px">
           <button class="sr-act1" style="background:var(--green-50);color:var(--green-600)" onclick="openModal('share')">分享结果</button>
         </div>
       </div>`;
+  }
+
+  /* 将拍照测碳结果记入碳账本首页 */
+  function saveScanToLedger(){
+    const items=albumSelected.map(id=>albumData.find(a=>a.id===id)).filter(Boolean);
+    if(!items.length){toast('没有可记录的数据','⚠️');return;}
+    const total=items.reduce((s,i)=>s+i.carbon,0);
+    // 更新今日碳排放总数
+    updateLedgerCarbon(total);
+    // 添加到账本首页流水列表
+    const ledgerFlow=document.querySelector('#page-ledger .flow-list');
+    if(ledgerFlow){
+      items.forEach(i=>{
+        const newItem=document.createElement('div');
+        newItem.className='flow-item';
+        newItem.innerHTML=`<div class="fi-ico" style="background:${i.bg};color:#fff">${i.emoji}</div><div class="fi-body"><div class="fi-name">${i.name} · 拍照测算</div><div class="fi-time">刚刚 · AI拍照识别</div></div><div class="fi-val up num">+${i.carbon.toFixed(1)}</div>`;
+        ledgerFlow.insertBefore(newItem,ledgerFlow.firstChild);
+      });
+    }
+    // 添加到全部碳排放记录
+    items.forEach(i=>{
+      allFlowData.unshift({
+        ico:i.emoji,
+        cls:'c2',
+        name:i.name+' · 拍照测算',
+        time:'刚刚 · AI拍照识别',
+        val:'+'+i.carbon.toFixed(1),
+        isUp:true,
+        period:'today'
+      });
+    });
+    toast('已记入碳账本：'+items.length+'项 共'+total.toFixed(1)+'kg','✅');
+    go('page-ledger');
   }
 
   /* ===== Modal ===== */
@@ -2356,6 +3033,34 @@
     document.getElementById('pkTag').textContent='✅ 已发起';
     document.getElementById('pkTitle').textContent='低碳 PK 赛 · 等待应战';
     toast('PK 挑战已发起！等待对方应战','🏆');
+  }
+
+  /* 低碳出行导航 */
+  function planTravel(mode){
+    toast('已为您规划'+mode+'路线','🧭');
+  }
+
+  /* 个性化减碳目标设置 */
+  function setCarbonGoal(el,val){
+    el.parentElement.querySelectorAll('.goal-opt').forEach(o=>{
+      o.classList.remove('sel');
+      o.style.border='1.5px solid var(--line)';
+      o.style.background='var(--white)';
+      o.querySelectorAll('div').forEach(d=>{
+        if(d.style.fontSize==='11px')d.style.color='var(--gray-500)';
+        if(d.style.fontSize==='16px')d.style.color='var(--ink)';
+      });
+    });
+    el.classList.add('sel');
+    el.style.border='1.5px solid var(--green-500)';
+    el.style.background='var(--green-50)';
+    el.querySelectorAll('div').forEach(d=>{
+      if(d.style.fontSize==='11px')d.style.color='var(--green-700)';
+      if(d.style.fontSize==='16px')d.style.color='var(--green-700)';
+    });
+    const goalEl=document.getElementById('carbonGoalVal');
+    if(goalEl)goalEl.innerHTML=val+' <small style="font-size:12px;font-weight:500">kg/月</small>';
+    toast('目标已更新为'+val+'kg/月，AI将为你调整任务难度','🎯');
   }
 
   /* ===== GLOBAL STATE (数据联动) ===== */
@@ -2396,6 +3101,36 @@
 
   /* ===== 页面加载时初始化 ===== */
   function initApp(){
+    // Splash screen - 生成粒子
+    const particleContainer=document.getElementById('splashParticles');
+    if(particleContainer){
+      for(let i=0;i<25;i++){
+        const p=document.createElement('div');
+        p.className='splash-particle';
+        p.style.left=Math.random()*100+'%';
+        p.style.bottom=Math.random()*40+'%';
+        p.style.animationDelay=Math.random()*4+'s';
+        p.style.animationDuration=(3+Math.random()*3)+'s';
+        const size=2+Math.random()*4;
+        p.style.width=size+'px';
+        p.style.height=size+'px';
+        particleContainer.appendChild(p);
+      }
+    }
+    // 文案轮播
+    const slogans=document.querySelectorAll('#splashSlogan div');
+    let sloganIdx=0;
+    const sloganTimer=setInterval(()=>{
+      slogans[sloganIdx].classList.remove('active');
+      sloganIdx=(sloganIdx+1)%slogans.length;
+      slogans[sloganIdx].classList.add('active');
+    },1500);
+    // 2.5秒后隐藏splash
+    setTimeout(()=>{
+      clearInterval(sloganTimer);
+      document.getElementById('splash').classList.add('hide');
+      setTimeout(()=>{document.getElementById('splash').style.display='none';},600);
+    },3000);
     animateNum(document.getElementById('heroCarbonNum'),0,3.2,1.2);
     // 初始化Tab指示器
     setTimeout(()=>{
@@ -2439,8 +3174,8 @@
 
   /* ===== 搜索 ===== */
   const searchData=[
-    {ico:'🚗',bg:'#FEF3C7',t:'打车碳排放',d:'10km 约 1.7kg CO₂',page:'page-calc'},
-    {ico:'🚇',bg:'#E0F2FE',t:'地铁通勤',d:'10km 仅 0.3kg CO₂',page:'page-calc'},
+    {ico:'🚗',bg:'#FEF3C7',t:'打车碳排放',d:'10km 约 1.7kg CO₂',page:'page-calc-footprint'},
+    {ico:'🚇',bg:'#E0F2FE',t:'地铁通勤',d:'10km 仅 0.3kg CO₂',page:'page-calc-footprint'},
     {ico:'🥗',bg:'#D1FAE5',t:'素食减碳',d:'每周2天素食减碳12kg',page:'page-task'},
     {ico:'🎯',bg:'var(--green-100)',t:'减碳任务',d:'本周5项任务等你完成',page:'page-task'},
     {ico:'🎁',bg:'#FCE7F3',t:'积分兑换',d:'186积分可兑换',page:'page-shop'},
@@ -2549,13 +3284,81 @@
 
   /* ===== 排行榜：动态广场 ===== */
   const dynamicData=[
-    {ava:'🐟',name:'小鱼',time:'2分钟前',text:'完成了「步行通勤3次」任务，本周已减碳 <b>2.1kg</b> 🎉',likes:12,comments:3},
-    {ava:'🎮',name:'阿杰',time:'15分钟前',text:'发起了周末低碳PK赛，目标碳排&lt;5kg，谁来挑战？🏆',likes:8,comments:5},
-    {ava:'📚',name:'小周',time:'1小时前',text:'解锁了「连续30天」勋章！坚持就是胜利 🔥',likes:24,comments:8},
-    {ava:'🎵',name:'Luna',time:'3小时前',text:'用积分兑换了沙漠种树1棵 🌳 为地球出一份力',likes:18,comments:4}
+    {id:0,ava:'🐟',name:'小鱼',time:'2分钟前',text:'完成了「步行通勤3次」任务，本周已减碳 <b>2.1kg</b> 🎉',likes:12,comments:3,liked:false,cmts:[{ava:'🎮',name:'阿杰',text:'太强了！我也要开始步行通勤',time:'1分钟前'},{ava:'📚',name:'小周',text:'向你学习 💪',time:'30秒前'}]},
+    {id:1,ava:'🎮',name:'阿杰',time:'15分钟前',text:'发起了周末低碳PK赛，目标碳排&lt;5kg，谁来挑战？🏆',likes:8,comments:5,liked:false,cmts:[{ava:'🐟',name:'小鱼',text:'我来！这周末我骑共享单车',time:'10分钟前'},{ava:'🎵',name:'Luna',text:'算我一个 🙋',time:'5分钟前'}]},
+    {id:2,ava:'📚',name:'小周',time:'1小时前',text:'解锁了「连续30天」勋章！坚持就是胜利 🔥',likes:24,comments:8,liked:false,cmts:[{ava:'🐟',name:'小鱼',text:'30天太厉害了！',time:'50分钟前'},{ava:'🎮',name:'阿杰',text:'下一个目标50天 🎯',time:'45分钟前'}]},
+    {id:3,ava:'🎵',name:'Luna',time:'3小时前',text:'用积分兑换了沙漠种树1棵 🌳 为地球出一份力',likes:18,comments:4,liked:false,cmts:[{ava:'📚',name:'小周',text:'种树好有意义！我也去兑换',time:'2小时前'},{ava:'🐟',name:'小鱼',text:'一起种一片森林 🌲',time:'1小时前'}]}
   ];
   function renderDynamic(){
-    return dynamicData.map(d=>`<div class="dyn-item"><div class="di-head"><div class="avatar sm">${d.ava}</div><div><div class="di-name">${d.name}</div><div class="di-time">${d.time}</div></div></div><div class="di-body">${d.text}</div><div class="di-foot"><div class="dif" onclick="this.innerHTML='❤️ '+(parseInt(this.textContent.match(/\d+/)||0)+1);this.style.color='var(--rose-500)'">🤍 ${d.likes}</div><div class="dif" onclick="toast('评论功能')">💬 ${d.comments}</div><div class="dif" onclick="openModal('share')">分享</div></div></div>`).join('');
+    return dynamicData.map(d=>`<div class="dyn-item" data-did="${d.id}">
+      <div class="di-head"><div class="avatar sm">${d.ava}</div><div><div class="di-name">${d.name}</div><div class="di-time">${d.time}</div></div></div>
+      <div class="di-body">${d.text}</div>
+      <div class="di-foot">
+        <div class="dif" onclick="dynLike(${d.id},this)">${d.liked?'❤️':'🤍'} <span class="like-count">${d.likes}</span></div>
+        <div class="dif" onclick="go('page-comment');openComment(${d.id})">💬 ${d.comments}</div>
+        <div class="dif" onclick="openModal('share')">分享</div>
+      </div>
+    </div>`).join('');
+  }
+  function dynLike(id,el){
+    const d=dynamicData.find(x=>x.id===id);
+    if(!d)return;
+    if(d.liked){
+      d.liked=false;d.likes--;
+      el.innerHTML='🤍 <span class="like-count">'+d.likes+'</span>';
+      el.style.color='';
+    }else{
+      d.liked=true;d.likes++;
+      el.innerHTML='❤️ <span class="like-count">'+d.likes+'</span>';
+      el.style.color='var(--rose-500)';
+      // 点赞动画
+      el.style.transform='scale(1.3)';
+      setTimeout(()=>el.style.transform='',200);
+    }
+  }
+  let currentCommentId=null;
+  function openComment(id){
+    currentCommentId=id;
+    const d=dynamicData.find(x=>x.id===id);
+    if(!d)return;
+    const list=document.getElementById('commentList');
+    const html=`
+      <div class="dyn-item" style="margin:0 0 16px;background:var(--green-50);border-color:var(--green-200)">
+        <div class="di-head"><div class="avatar sm">${d.ava}</div><div><div class="di-name">${d.name}</div><div class="di-time">${d.time}</div></div></div>
+        <div class="di-body">${d.text}</div>
+      </div>
+      <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:12px">${d.cmts.length}条评论</div>
+      ${d.cmts.map(c=>`
+        <div style="display:flex;gap:10px;margin-bottom:16px">
+          <div class="avatar sm" style="flex-shrink:0">${c.ava}</div>
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:600;color:var(--ink)">${c.name} <span style="font-weight:400;color:var(--gray-400);font-size:11px;margin-left:4px">${c.time}</span></div>
+            <div style="font-size:13px;color:var(--gray-700);margin-top:3px;line-height:1.5">${c.text}</div>
+          </div>
+        </div>`).join('')}
+    `;
+    list.innerHTML=html;
+    document.getElementById('commentInput').value='';
+  }
+  function sendComment(){
+    const input=document.getElementById('commentInput');
+    const text=input.value.trim();
+    if(!text){toast('请输入评论内容','⚠️');return;}
+    const d=dynamicData.find(x=>x.id===currentCommentId);
+    if(!d)return;
+    d.cmts.push({ava:'🧑',name:'我',text:text,time:'刚刚'});
+    d.comments++;
+    openComment(currentCommentId);
+    // 刷新动态广场的评论数
+    const dynItems=document.querySelectorAll('.dyn-item[data-did]');
+    dynItems.forEach(item=>{
+      const did=parseInt(item.dataset.did);
+      if(did===currentCommentId){
+        const cmtEl=item.querySelectorAll('.dif')[1];
+        cmtEl.innerHTML='💬 '+d.comments;
+      }
+    });
+    toast('评论发送成功','✅');
   }
 
   /* ===== 排行榜：报名挑战 ===== */
@@ -2847,6 +3650,68 @@
     }
     ptrIndicator.style.transform='translateX(-50%) translateY(-40px)';
   });
+
+  /* ===== 碳中和计算器 ===== */
+  let neutralCarbon=0, neutralPts=0;
+  function calcNeutral(){
+    const v=parseFloat(document.getElementById('neutralInput').value);
+    if(!v||v<=0){toast('请输入有效的碳排放量','⚠️');return;}
+    neutralCarbon=v;
+    const trees=Math.ceil(v/20);
+    const km=(v/0.17).toFixed(1);
+    const elec=(v/0.785).toFixed(1);
+    neutralPts=Math.ceil(v/0.1);
+    document.getElementById('nrCarbon').textContent=v.toFixed(1);
+    document.getElementById('nrTrees').textContent=trees;
+    document.getElementById('nrKm').textContent=km;
+    document.getElementById('nrElec').textContent=elec;
+    document.getElementById('nrPoints').textContent=neutralPts;
+    const res=document.getElementById('neutralResult');
+    res.style.display='block';
+    const btn=document.getElementById('neutralRedeemBtn');
+    btn.disabled=false;
+    btn.style.background='linear-gradient(135deg,var(--green-500),var(--green-700))';
+    btn.innerHTML='用 <span id="nrBtnPoints">'+neutralPts+'</span> 积分兑换碳中和';
+    toast('已生成碳中和方案','🌱');
+    setTimeout(()=>res.scrollIntoView({behavior:'smooth',block:'start'}),100);
+  }
+  function redeemNeutral(){
+    if(neutralPts<=0){toast('请先计算碳中和方案','⚠️');return;}
+    if(myPoints<neutralPts){toast('积分不足，继续减碳赚取吧','💔');return;}
+    myPoints-=neutralPts;
+    document.querySelectorAll('.pc-bal.num').forEach(el=>el.textContent=myPoints);
+    const meP=document.getElementById('mePoints');
+    if(meP)meP.textContent=myPoints+'积分';
+    const btn=document.getElementById('neutralRedeemBtn');
+    btn.disabled=true;
+    btn.style.background='var(--gray-300)';
+    btn.textContent='已兑换碳中和 '+neutralCarbon.toFixed(1)+'kg';
+    toast('碳中和兑换成功！消耗'+neutralPts+'积分，中和'+neutralCarbon.toFixed(1)+'kg CO₂','🌳');
+    neutralPts=0;
+  }
+
+  /* ===== 家庭碳账户 ===== */
+  const famTasks={1:{done:2,total:4,reward:30,name:'全家步行出门1次'},2:{done:3,total:4,reward:20,name:'一起做一顿素食晚餐'}};
+  function famCheckin(id){
+    const t=famTasks[id];
+    if(!t||t.done>=t.total){toast('该任务已全员打卡完成','✅');return;}
+    t.done++;
+    document.getElementById('famTask'+id+'Done').textContent=t.done;
+    document.getElementById('famTask'+id+'Bar').style.width=(t.done/t.total*100)+'%';
+    if(t.done>=t.total){
+      const btn=document.getElementById('famTask'+id+'Btn');
+      btn.disabled=true;
+      btn.style.background='var(--gray-300)';
+      btn.textContent='已完成';
+      myPoints+=t.reward;
+      document.querySelectorAll('.pc-bal.num').forEach(el=>el.textContent=myPoints);
+      const meP=document.getElementById('mePoints');
+      if(meP)meP.textContent=myPoints+'积分';
+      toast('全家打卡完成！+'+t.reward+'积分','🎉');
+    }else{
+      toast('打卡成功('+t.done+'/'+t.total+')，等待其他家庭成员','👨‍👩‍👧‍👦');
+    }
+  }
 
   /* ===== 初始化 ===== */
   initApp();
